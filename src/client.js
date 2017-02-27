@@ -4,9 +4,9 @@ import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import App from './containers/App';
 import configureStore from './stores';
+import "rxjs";
 
 const store = configureStore();
-
 ReactDOM.render(
   <AppContainer>
     <Provider store={store}>

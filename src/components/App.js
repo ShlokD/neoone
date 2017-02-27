@@ -1,17 +1,18 @@
 import React from 'react';
-import YeomanImage from './YeomanImage';
-import './app.css';
+import styles from './app.css';
+import map from "lodash/map";
 
 class AppComponent extends React.Component {
 
   render() {
+    const { onFindClick, movie } = this.props;
     return (
-      <div className="index">
-        <YeomanImage />
-        <div className="notice">
-          Please edit <code>src/components/App.js</code> to get started!
-        </div>
+      <div>
+        <button onClick={onFindClick}> Click Me! </button>
+        <p>{movie.Title}</p>
+        <img height={50} width={50} src={movie.Poster} />
       </div>
+
     );
   }
 }

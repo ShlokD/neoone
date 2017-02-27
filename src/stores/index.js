@@ -1,19 +1,20 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from "redux";
+import { createEpicMiddleware } from "redux-observable";
+import { browserHistory } from "react-router";
+import { routerMiddleware } from "react-router-redux";
+import createLogger from "redux-logger";
+import { rootEpic } from "../actions";
 import reducers from '../reducers';
 
+const logger = createLogger();
+const router = routerMiddleware(browserHistory);
+
 function reduxStore(initialState) {
-  const store = createStore(reducers, initialState,
-    window.devToolsExtension && window.devToolsExtension());
-
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
-      // We need to require for hot reloading to work properly.
-      const nextReducer = require('../reducers');  // eslint-disable-line global-require
-
-      store.replaceReducer(nextReducer);
-    });
-  }
+  const epicMiddleware = createEpicMiddleware(rootEpic);
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const store = createStore(reducers, initialState, composeEnhancers(
+    applyMiddleware(epicMiddleware)
+  ));
 
   return store;
 }
