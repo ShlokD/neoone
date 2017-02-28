@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
+import 'rxjs';
 import App from './containers/App';
 import configureStore from './stores';
 
 const store = configureStore();
-
 ReactDOM.render(
   <AppContainer>
     <Provider store={store}>

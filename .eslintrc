@@ -16,7 +16,8 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/jsx-space-before-closing": ["off"],
     "react/prefer-stateless-function": ["off"],
-    "no-underscore-dangle": [ "error", { "allowAfterThis": true }],
+    "no-underscore-dangle": 0,
+    "linebreak-style": 0,
     "import/no-unresolved": ["error", {
         "ignore": [
           "config",

@@ -87,6 +87,9 @@ class WebpackBaseConfig {
         inline: true,
         port: 8000
       },
+      node: {
+        fs: "empty"
+      },
       entry: './index.js',
       module: {
         rules: [

@@ -1,10 +1,11 @@
-/* eslint-disable import/newline-after-import */
-/* Exports all the actions from a single point.
+import { combineEpics } from 'redux-observable';
+import { searchMovies, searchMoviesSuccess, searchMoviesEpic } from './searchMovies';
 
-Allows to import actions like so:
+export const actions = {
+  searchMovies,
+  searchMoviesSuccess
+};
 
-import {action1, action2} from '../actions/'
-*/
-/* Populated by react-webpack-redux:action */
-const actions = {};
-module.exports = actions;
+export const rootEpic = combineEpics(
+  searchMoviesEpic
+);
