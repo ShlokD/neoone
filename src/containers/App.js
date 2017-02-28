@@ -4,7 +4,7 @@ import React, {
 import { connect } from 'react-redux';
 import get from 'lodash/get';
 import { actions } from '../actions';
-import SearchMovieComponent from '../components/App';
+import SearchMovieComponent from '../components/searchMovieComponent';
 
 class App extends Component {
   render() {
