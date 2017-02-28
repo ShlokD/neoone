@@ -9,7 +9,7 @@
  */
 /* Populated by react-webpack-redux:reducer */
 import { combineReducers } from 'redux';
-import { movies } from "./movies";
+import { movies } from './movies';
 const reducers = {
   movies
 };

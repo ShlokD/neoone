@@ -7,6 +7,7 @@ module.exports = function karmaConfig(config) {
   config.set({
     browsers: ['PhantomJS'],
     files: [
+      'node_modules/whatwg-fetch/fetch.js',
       'test/loadtests.js'
     ],
     port: 8080,

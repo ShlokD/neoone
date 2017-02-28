@@ -1,43 +1,65 @@
-import nock from 'nock';
+import Promise from 'bluebird';
+import { searchMoviesSuccess, searchMovies, searchMoviesEpic } from '../../src/actions/searchMovies';
+import { SEARCH_MOVIES_SUCCESS, SEARCH_MOVIES } from '../../src/actions/constants';
+import * as fetchUtils from '../../src/utils/fetchUtils';
 import configureMockStore from 'redux-mock-store';
-import { createEpicMiddleware } from 'redux-observable';
-import { searchMoviesSuccess, searchMovies, searchMoviesEpic } from "../../src/actions/searchMovies";
-import { SEARCH_MOVIES, SEARCH_MOVIES_SUCCESS, SEARCH_MOVIES_ERROR } from "../../src/actions/constants";
+import { ActionsObservable } from 'redux-observable';
 
-const epicMiddleware = createEpicMiddleware(searchMoviesEpic);
-const mockStore = configureMockStore([epicMiddleware]);
-
-describe('searchMoviesEpic', () => {
+describe('Search Movies Actions', () => {
+  let sandbox;
+  let fetchStub;
   let store;
 
   beforeEach(() => {
-    store = mockStore();
+    sandbox = sinon.sandbox.create();
+    fetchStub = sandbox.stub(fetchUtils, 'fetchData');
+    fetchStub.returns(new Promise((resolve, reject) => {
+      resolve({'message': 'success'});
+    }));
   });
 
   afterEach(() => {
-    nock.cleanAll();
-    epicMiddleware.replaceEpic(searchMoviesEpic);
+    sandbox.restore();
   });
 
-  it('produces the movies model', () => {
-    const payload = {
-      Title: "Some title"
-    };
-
-    nock('http://www.omdbapi.com?t=batman')
-      .get('http://www.omdbapi.com?t=batman')
-      .reply(200, {
-        body: {
-          payload
+  describe('searchMoviesSuccess action creator', () => {
+    it('should return an action with type SEARCH_MOVIES_SUCCESS', () => {
+      expect(searchMoviesSuccess({'foo': 'bar'})).to.eql({
+        type: SEARCH_MOVIES_SUCCESS,
+        payload: {
+          'foo': 'bar'
         }
       });
-    
-    store.dispatch({ type: SEARCH_MOVIES }).then(
-      () => {
-        expect(store.getActions()).toEqual([
-          { type: SEARCH_MOVIES },
-          { type: SEARCH_MOVIES, payload }
-      ]);
+    });
+  });
+
+  describe('searchMovies action creator', () => {
+    it('should return an action with type SEARCH_MOVIES', () => {
+      expect(searchMovies()).to.eql({
+        type: SEARCH_MOVIES
+      });
+    });
+  });
+
+  describe('searchMoviesEpic', () => {
+    let action$;
+    beforeEach(() => {
+      action$ = ActionsObservable.of({
+        type: SEARCH_MOVIES
+      });
+    });
+
+    it('should trigger necessary actions for success', () => {
+      const expectedResult = {
+        type: SEARCH_MOVIES_SUCCESS,
+        payload: {
+          'message': 'success'
+        }
+      }
+
+      searchMoviesEpic(action$)
+      .toArray()
+      .subscribe(result => expect(result).to.eql(expectedResult));
     });
   });
 });

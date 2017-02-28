@@ -1,34 +1,26 @@
 import React, {
-  Component,
-  PropTypes
+  Component
 } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import get from 'lodash/get';
 import { actions } from '../actions';
-import get from "lodash/get";
-import Main from '../components/App';
+import SearchMovieComponent from '../components/App';
 
 class App extends Component {
   render() {
-    return <Main {...this.props} />;
+    return <SearchMovieComponent {...this.props} />;
   }
 }
-App.propTypes = {
-  actions: PropTypes.shape({})
-};
 
 export const mapStateToProps = (state) => {
   const props = {
-    movie: get(state, "movies.data", {})
+    movie: get(state, 'movies.data', {})
   };
   return props;
-}
+};
 
-export const mapDispatchToProps = (dispatch) => {
-  return {
-    onFindClick: () => {
-      dispatch(actions.searchMovies())
-    }
-  }
-}
+export const mapDispatchToProps = dispatch => ({
+  onFindClick: () => dispatch(actions.searchMovies())
+});
+
 export default connect(mapStateToProps, mapDispatchToProps)(App);
