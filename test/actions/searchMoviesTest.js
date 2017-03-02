@@ -35,8 +35,9 @@ describe('Search Movies Actions', () => {
 
   describe('searchMovies action creator', () => {
     it('should return an action with type SEARCH_MOVIES', () => {
-      expect(searchMovies()).to.eql({
-        type: SEARCH_MOVIES
+      expect(searchMovies("someText")).to.eql({
+        type: SEARCH_MOVIES,
+        text: "someText"
       });
     });
   });

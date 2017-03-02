@@ -1,26 +1,51 @@
 import React, { Component, PropTypes } from 'react';
+import './searchMovieComponent.scss';
 
 class SearchMovieComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: ''
+    };
+    this._onChange = this._onChange.bind(this);
+    this._onSubmit = this._onSubmit.bind(this);
+  }
+
+  _onChange(e) {
+    this.setState({
+      text: e.target.value
+    });
+  }
+
+  _onSubmit(e) {
+    e.preventDefault();
+    const { onFindClick } = this.props;
+    const { text } = this.state;
+    onFindClick(text);
+  }
+
 
   render() {
-    const { onFindClick, movie } = this.props;
+    const { text } = this.state;
     return (
-      <div>
-        <button onClick={onFindClick}> Click Me! </button>
-        <p>{movie.Title}</p>
+      <div className="searchMovieContainer">
+        <label className="searchMovieLabel" htmlFor="movieTitleSearch"> Search </label>
+        <form className="searchMovieForm" onSubmit={this._onSubmit} autoComplete="off">
+          <input
+            type="text"
+            name="movieTitleSearch"
+            className="searchMovieInput"
+            value={text}
+            onChange={this._onChange}/>
+        </form>
+        <span className="searchMovieText"> Enter a movie name </span>
       </div>
     );
   }
 }
 
 SearchMovieComponent.propTypes = {
-  movie: PropTypes.arrayOf(PropTypes.object),
   onFindClick: PropTypes.func
-};
-
-SearchMovieComponent.defaultProps = {
-  movie: [],
-  onFindClick: () => {}
 };
 
 export default SearchMovieComponent;

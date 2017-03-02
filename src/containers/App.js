@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import get from 'lodash/get';
 import { actions } from '../actions';
 import SearchMovieComponent from '../components/searchMovieComponent';
+import '../styles/global.scss';
 
 class App extends Component {
   render() {
@@ -20,7 +21,7 @@ export const mapStateToProps = (state) => {
 };
 
 export const mapDispatchToProps = dispatch => ({
-  onFindClick: () => dispatch(actions.searchMovies())
+  onFindClick: searchText => dispatch(actions.searchMovies(searchText))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
