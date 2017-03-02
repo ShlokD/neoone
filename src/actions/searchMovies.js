@@ -10,12 +10,12 @@ export const searchMoviesSuccess = payload => ({
   payload
 });
 
-export const searchMovies = () => ({
-  type: SEARCH_MOVIES
+export const searchMovies = text => ({
+  type: SEARCH_MOVIES,
+  text
 });
-
 
 export const searchMoviesEpic = action$ =>
   action$.ofType(SEARCH_MOVIES)
-  .mergeMap(() => Observable.from(fetchData('http://www.omdbapi.com')))
+  .mergeMap(({text}) => Observable.from(fetchData(`http://www.omdbapi.com?t=${text}`)))
   .map(payload => searchMoviesSuccess(payload));
