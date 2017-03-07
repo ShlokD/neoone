@@ -1,19 +1,16 @@
 import { SEARCH_MOVIES_SUCCESS } from '../actions/constants';
+import genericReducer from './genericReducer';
 
-export const movies = (state = {}, action) => {
-  switch (action.type) {
-    case SEARCH_MOVIES_SUCCESS: {
-      const { payload } = action;
-      return {
-        ...state,
-        data: payload
-      };
-    }
-    default: {
-      return state;
-    }
-  }
+export const addMovieToState = (state, { payload }) => ({
+  ...state,
+  data: payload
+});
+
+export const movieReducerMap = {
+  [SEARCH_MOVIES_SUCCESS]: addMovieToState
 };
+
+export const movies = (state = {}, action) => genericReducer(movieReducerMap, state, action);
 
 
 export default movies;
