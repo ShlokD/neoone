@@ -4,12 +4,18 @@ import React, {
 import { connect } from 'react-redux';
 import get from 'lodash/get';
 import { actions } from '../actions';
+import HeaderComponent from '../components/headerComponent';
 import SearchMovieComponent from '../components/searchMovieComponent';
 import '../styles/global.scss';
 
 class App extends Component {
   render() {
-    return <SearchMovieComponent {...this.props} />;
+    return (
+      <div>
+        <HeaderComponent />
+        <SearchMovieComponent {...this.props} />;
+      </div>
+    );
   }
 }
 
