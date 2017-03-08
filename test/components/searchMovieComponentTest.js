@@ -12,11 +12,11 @@ describe('SearchMovieComponent', () => {
   let onSubmitStub;
 
   beforeEach(() => {
-    sandbox =  sinon.sandbox.create();
+    sandbox = sinon.sandbox.create();
     onFindClickStub = sandbox.stub();
     props = {
       onFindClick: onFindClickStub
-    }
+    };
     component = shallow(<SearchMovieComponent {...props} />);
     instance = component.instance();
     onChangeStub = sandbox.spy(instance, '_onChange');
