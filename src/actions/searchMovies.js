@@ -5,17 +5,24 @@ import {
 } from './constants';
 import { fetchData } from '../utils/fetchUtils';
 
-export const searchMoviesSuccess = payload => ({
+export const searchMoviesSuccess = (payload, searchText) => ({
   type: SEARCH_MOVIES_SUCCESS,
-  payload
+  payload,
+  searchText
 });
 
-export const searchMovies = text => ({
+export const searchMovies = (text, pageNumber) => ({
   type: SEARCH_MOVIES,
-  text
+  text,
+  pageNumber
 });
 
-export const searchMoviesEpic = action$ =>
-  action$.ofType(SEARCH_MOVIES)
-  .mergeMap(({text}) => Observable.from(fetchData(`http://www.omdbapi.com?t=${text}`)))
-  .map(payload => searchMoviesSuccess(payload));
+export const searchMoviesEpic = (action$) => {
+  let searchText = '';
+  return action$.ofType(SEARCH_MOVIES)
+  .mergeMap(({text, pageNumber}) => {
+    searchText = text;
+    return Observable.from(fetchData(`http://www.omdbapi.com?s=${text}&page=${pageNumber}`));
+  })
+  .map(payload => searchMoviesSuccess(payload, searchText));
+};

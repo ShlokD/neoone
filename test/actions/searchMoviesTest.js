@@ -1,14 +1,12 @@
 import Promise from 'bluebird';
+import { ActionsObservable } from 'redux-observable';
 import { searchMoviesSuccess, searchMovies, searchMoviesEpic } from '../../src/actions/searchMovies';
 import { SEARCH_MOVIES_SUCCESS, SEARCH_MOVIES } from '../../src/actions/constants';
 import * as fetchUtils from '../../src/utils/fetchUtils';
-import configureMockStore from 'redux-mock-store';
-import { ActionsObservable } from 'redux-observable';
 
 describe('Search Movies Actions', () => {
   let sandbox;
   let fetchStub;
-  let store;
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
@@ -24,20 +22,22 @@ describe('Search Movies Actions', () => {
 
   describe('searchMoviesSuccess action creator', () => {
     it('should return an action with type SEARCH_MOVIES_SUCCESS', () => {
-      expect(searchMoviesSuccess({'foo': 'bar'})).to.eql({
+      expect(searchMoviesSuccess({'foo': 'bar'}, 'baz')).to.eql({
         type: SEARCH_MOVIES_SUCCESS,
         payload: {
           'foo': 'bar'
-        }
+        },
+        searchText: 'baz'
       });
     });
   });
 
   describe('searchMovies action creator', () => {
     it('should return an action with type SEARCH_MOVIES', () => {
-      expect(searchMovies("someText")).to.eql({
+      expect(searchMovies('someText', 2)).to.eql({
         type: SEARCH_MOVIES,
-        text: "someText"
+        text: 'someText',
+        pageNumber: 2
       });
     });
   });

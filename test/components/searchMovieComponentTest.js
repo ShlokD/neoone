@@ -7,15 +7,15 @@ describe('SearchMovieComponent', () => {
   let sandbox;
   let component;
   let instance;
-  let onFindClickStub;
+  let onFindStub;
   let onChangeStub;
   let onSubmitStub;
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
-    onFindClickStub = sandbox.stub();
+    onFindStub = sandbox.stub();
     props = {
-      onFindClick: onFindClickStub
+      onFind: onFindStub
     };
     component = shallow(<SearchMovieComponent {...props} />);
     instance = component.instance();
@@ -90,7 +90,7 @@ describe('SearchMovieComponent', () => {
         instance._onSubmit({
           preventDefault: () => {},
         });
-        expect(onFindClickStub).to.be.calledOnce;
+        expect(onFindStub).to.be.calledOnce;
       });
     });
   });
