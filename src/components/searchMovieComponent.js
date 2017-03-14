@@ -19,9 +19,9 @@ class SearchMovieComponent extends Component {
 
   _onSubmit(e) {
     e.preventDefault();
-    const { onFindClick } = this.props;
+    const { onFind } = this.props;
     const { text } = this.state;
-    onFindClick(text);
+    onFind(text, 1);
   }
 
 
@@ -45,7 +45,7 @@ class SearchMovieComponent extends Component {
 }
 
 SearchMovieComponent.propTypes = {
-  onFindClick: PropTypes.func
+  onFind: PropTypes.func
 };
 
 export default SearchMovieComponent;

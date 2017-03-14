@@ -13,14 +13,22 @@ describe('Movies reducer', () => {
     action = {
       type: SEARCH_MOVIES_SUCCESS,
       payload: {
-        Title: 'Star Wars'
-      }
+        Search: [
+          { Title: 'Star Wars' },
+          { Title: 'Star Wars 2'},
+          { Title: 'Star Wars 3'}
+        ],
+      },
+      searchText: 'Star Wars'
     };
     const returnedState = movies({}, action);
     expect(returnedState).to.eql({
-      data: {
-        Title: 'Star Wars'
-      }
+      data:[
+        { Title: 'Star Wars' },
+        { Title: 'Star Wars 2'},
+        { Title: 'Star Wars 3'}
+      ],
+      searchText: 'Star Wars'
     });
   });
 });

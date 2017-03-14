@@ -1,19 +1,28 @@
 import React, {
-  Component
+  Component,
+  PropTypes
 } from 'react';
 import { connect } from 'react-redux';
 import get from 'lodash/get';
 import { actions } from '../actions';
 import HeaderComponent from '../components/headerComponent';
 import SearchMovieComponent from '../components/searchMovieComponent';
+import MoviesList from '../components/movieListComponent.js';
 import '../styles/global.scss';
 
 class App extends Component {
   render() {
+    const {
+      onFind,
+      movies,
+      searchText
+    } = this.props;
+
     return (
       <div>
         <HeaderComponent />
-        <SearchMovieComponent {...this.props} />;
+        <SearchMovieComponent {...{ onFind }} />
+        <MoviesList {...{movies, searchText, onFind}} />
       </div>
     );
   }
@@ -21,13 +30,20 @@ class App extends Component {
 
 export const mapStateToProps = (state) => {
   const props = {
-    movie: get(state, 'movies.data', {})
+    movies: get(state, 'movies.data', []),
+    searchText: get(state, 'movies.searchText', '')
   };
   return props;
 };
 
 export const mapDispatchToProps = dispatch => ({
-  onFindClick: searchText => dispatch(actions.searchMovies(searchText))
+  onFind: (searchText, pageNumber) => dispatch(actions.searchMovies(searchText, pageNumber))
 });
+
+App.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object),
+  searchText: PropTypes.string,
+  onFind: PropTypes.func
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
