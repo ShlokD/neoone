@@ -1,0 +1,22 @@
+@import '../styles/variables.scss';
+
+
+.movieTile {
+  margin: 20px;
+  padding: 20px;
+  background: black !important;
+  text-align: center;
+}
+
+.movieTitle {
+    display: inline;
+    color: $aqua-dark;
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.movieImage {
+  width: 300px;
+  height: 446px;
+  display: block;
+}

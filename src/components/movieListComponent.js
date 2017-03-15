@@ -1,7 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 import map from 'lodash/map';
 import Infinite from 'react-infinite';
+import MovieTile from './movieTileComponent';
 import './movieListComponent.scss';
+
+export const generateMovieTile = (movie, key) => {
+  const { Title, Poster } = movie;
+  return (
+    <div key={key}>
+      <MovieTile
+        title={Title}
+        poster={Poster}
+      />
+    </div>
+  );
+};
+
 
 class MoviesList extends Component {
   constructor(props) {
@@ -25,11 +39,11 @@ class MoviesList extends Component {
     return (
       <div className="moviesList">
         <Infinite
-          elementHeight={150}
+          elementHeight={526}
           useWindowAsScrollContainer
           infiniteLoadBeginEdgeOffset={200}
           onInfiniteLoad={this._handleInfiniteLoad}>
-          {map(movies, (movie, key) => <div key={key} className="movieItem">{movie.Title}</div>)}
+          {map(movies, (movie, key) => generateMovieTile(movie, key))}
         </Infinite>
       </div>
     );
