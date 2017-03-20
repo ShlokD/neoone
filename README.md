@@ -1,4 +1,4 @@
-### Neooen Project
+### Neoone Project
 
 This project is a web application for searching and displaying information about movies
 

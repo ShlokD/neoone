@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import map from 'lodash/map';
+import noop from 'lodash/noop';
 import Infinite from 'react-infinite';
 import MovieTile from './movieTileComponent';
 import './movieListComponent.scss';
@@ -58,7 +59,7 @@ MoviesList.propTypes = {
 
 MoviesList.defaultProps = {
   movies: [],
-  onFind: () => {},
+  onFind: noop,
   searchText: ''
 };
 
