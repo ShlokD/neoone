@@ -19,10 +19,14 @@ class App extends Component {
     } = this.props;
 
     return (
-      <div>
-        <HeaderComponent />
-        <SearchMovieComponent {...{ onFind }} />
-        <MoviesList {...{movies, searchText, onFind}} />
+      <div className="app-container">
+        <div className="movie-search-section">
+          <HeaderComponent />
+          <SearchMovieComponent {...{ onFind }} />
+        </div>
+        <div className="movie-list-section">
+          <MoviesList {...{movies, searchText, onFind}} />
+        </div>
       </div>
     );
   }

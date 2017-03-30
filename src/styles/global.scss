@@ -1,6 +1,31 @@
 @import "variables.scss";
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: $grey-dark;
   font-family: Lato, Verdana, Geneva, sans-serif;
+  height: 100%;
+}
+
+
+.app-container {
+  display: flex;
+  height: 100%;
+}
+
+.movie-search-section {
+  display: flex;
+  flex-direction: column;
+  background-color: $aqua-light;
+  height: 100%;
+  width: 25%;
+  padding: 10px;
+  position: absolute;
+}
+
+.movie-list-section {
+  flex: 1 1 65%;
 }
