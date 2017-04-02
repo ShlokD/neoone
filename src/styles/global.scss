@@ -20,12 +20,19 @@ body {
   display: flex;
   flex-direction: column;
   background-color: $aqua-light;
-  height: 100%;
+  height: auto;
   width: 25%;
   padding: 10px;
-  position: absolute;
+  flex: 1 1 35%;
+  overflow: hidden;
+  padding-bottom: 100%;
 }
 
 .movie-list-section {
   flex: 1 1 65%;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
