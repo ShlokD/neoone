@@ -2,10 +2,12 @@
 
 
 .movieTile {
-  margin: 20px;
+  margin-bottom: 20px;
   padding: 20px;
   background: black !important;
   text-align: center;
+  display: flex;
+  justify-content: space-around;
 }
 
 .movieTitle {
