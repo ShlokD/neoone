@@ -8,6 +8,7 @@
   text-align: center;
   display: flex;
   justify-content: space-around;
+  transition: padding-bottom 1s ease-in;
 }
 
 .movieTitle {
@@ -18,7 +19,15 @@
 }
 
 .movieImage {
-  width: 300px;
-  height: 446px;
+  width: 270px;
+  height: 402px;
   display: block;
+}
+
+.movieShortDescription {
+  display: block;
+}
+
+.movieTile:hover {
+  padding-bottom: 40%;
 }

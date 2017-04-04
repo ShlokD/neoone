@@ -1,1 +1,9 @@
 @import '../styles/variables.scss';
+
+
+.moviesInfiniteListContainer > div:first-child{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  transition: all 1s ease-in;
+}
