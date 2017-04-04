@@ -14,12 +14,10 @@ describe('Movie Tile Component', () => {
     component = shallow(<MovieTile {...props} />);
   });
 
-  it('should render title', () => {
-    expect(component.find('.movieTitle').text()).to.equal('Star Wars');
-  });
-
   it('should render image with correct source tag', () => {
     expect(component.find('img').prop('src')).to.eql('some-image-src');
     expect(component.find('img').prop('alt')).to.eql('Star Wars poster');
   });
+
+
 });

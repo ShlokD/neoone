@@ -40,7 +40,8 @@ class MoviesList extends Component {
     return (
       <div className="moviesList">
         <Infinite
-          elementHeight={526}
+          className="moviesInfiniteListContainer"
+          elementHeight={160}
           useWindowAsScrollContainer
           infiniteLoadBeginEdgeOffset={200}
           onInfiniteLoad={this._handleInfiniteLoad}>

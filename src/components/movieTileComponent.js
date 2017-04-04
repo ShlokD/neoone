@@ -7,7 +7,6 @@ class MovieTile extends Component {
     const { title, poster } = this.props;
     return (
       <div className="movieTile">
-        <h4 className="movieTitle">{title}</h4>
         <img className="movieImage" alt={`${title} poster`} src={poster} />
       </div>
     );
