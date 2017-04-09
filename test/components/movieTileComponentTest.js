@@ -18,6 +18,4 @@ describe('Movie Tile Component', () => {
     expect(component.find('img').prop('src')).to.eql('some-image-src');
     expect(component.find('img').prop('alt')).to.eql('Star Wars poster');
   });
-
-
 });

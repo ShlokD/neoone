@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import MoviesList, { generateMovieTile } from '../../src/components/movieListComponent';
+import MoviesList from '../../src/components/movieListComponent';
 
 describe('MoviesList', () => {
   let component;
@@ -71,24 +71,22 @@ describe('MoviesList', () => {
           });
         });
       });
-    });
-  });
 
-  describe('helper methods', () => {
-    describe('generateMovieTile', () => {
-      let movieTile;
+      describe('generateMovieTile', () => {
+        let movieTile;
 
-      it('should generate a movie tile', () => {
-        component = shallow(generateMovieTile({
-          Title: 'Star Wars',
-          Poster: 'some-link'
-        }, 'some-key'));
+        it('should generate a movie tile', () => {
+          component = shallow(instance._generateMovieTile({
+            Title: 'Star Wars',
+            Poster: 'some-link'
+          }, 'some-key'));
 
-        movieTile = component.find('MovieTile');
-        expect(component.key()).to.equal('some-key');
-        expect(movieTile).to.have.length(1);
-        expect(movieTile.prop('title')).to.equal('Star Wars');
-        expect(movieTile.prop('poster')).to.equal('some-link');
+          movieTile = component.find('MovieTile');
+          expect(component.key()).to.equal('some-key');
+          expect(movieTile).to.have.length(1);
+          expect(movieTile.prop('title')).to.equal('Star Wars');
+          expect(movieTile.prop('poster')).to.equal('some-link');
+        });
       });
     });
   });

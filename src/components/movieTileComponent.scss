@@ -8,7 +8,6 @@
   text-align: center;
   display: flex;
   justify-content: space-around;
-  transition: padding-bottom 1s ease-in;
 }
 
 .movieTitle {
@@ -28,6 +27,9 @@
   display: block;
 }
 
-.movieTile:hover {
-  padding-bottom: 40%;
+.movieTileButton {
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
