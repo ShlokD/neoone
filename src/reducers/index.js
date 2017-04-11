@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import { movies } from './movies';
+import { movieInfo } from './movieInfo';
 
 const reducers = {
-  movies
+  movies,
+  movieInfo
 };
 
 const combined = combineReducers(reducers);

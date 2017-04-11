@@ -13,9 +13,11 @@ import '../styles/global.scss';
 class App extends Component {
   render() {
     const {
-      onFind,
       movies,
-      searchText
+      searchText,
+      movieInfo,
+      onFind,
+      getMovieDetails
     } = this.props;
 
     return (
@@ -25,7 +27,7 @@ class App extends Component {
           <SearchMovieComponent {...{ onFind }} />
         </div>
         <div className="movie-list-section">
-          <MoviesList {...{movies, searchText, onFind}} />
+          <MoviesList {...{movies, searchText, movieInfo, onFind, getMovieDetails}} />
         </div>
       </div>
     );
@@ -35,19 +37,25 @@ class App extends Component {
 export const mapStateToProps = (state) => {
   const props = {
     movies: get(state, 'movies.data', []),
-    searchText: get(state, 'movies.searchText', '')
+    searchText: get(state, 'movies.searchText', ''),
+    movieInfo: get(state, 'movieInfo', {})
   };
   return props;
 };
 
 export const mapDispatchToProps = dispatch => ({
-  onFind: (searchText, pageNumber) => dispatch(actions.searchMovies(searchText, pageNumber))
+  onFind: (searchText, pageNumber) => dispatch(actions.searchMovies(searchText, pageNumber)),
+  getMovieDetails: id => dispatch(actions.getMovieById(id))
 });
 
 App.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object),
   searchText: PropTypes.string,
-  onFind: PropTypes.func
+  movieInfo: PropTypes.shape({
+    id: PropTypes.object
+  }),
+  onFind: PropTypes.func,
+  getMovieDetails: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

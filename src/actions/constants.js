@@ -1,2 +1,6 @@
 export const SEARCH_MOVIES = 'SEARCH_MOVIES';
 export const SEARCH_MOVIES_SUCCESS = 'SEARCH_MOVIES_SUCCESS';
+export const GET_MOVIE_BY_ID = 'GET_MOVIE_BY_ID';
+export const GET_MOVIE_BY_ID_SUCCESS = 'GET_MOVIE_BY_ID_SUCCESS';
+export const FRONT_FACE = 'FRONT_FACE';
+export const BACK_FACE = 'BACK_FACE';
