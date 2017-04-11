@@ -7,6 +7,18 @@ Written using React, Redux, Redux-Observable, RxJS and SASS
 [![Build Status](https://travis-ci.org/ShlokD/neoone.svg?branch=master)](https://travis-ci.org/ShlokD/neoone)
 
 
-Screenshot
+Screenshots
 
-![moviescreen](https://cloud.githubusercontent.com/assets/12539356/24591739/3ab0efee-17bd-11e7-8b7d-e300e460985f.PNG)
+#### Display Movie Information
+
+
+![movieapplication1](https://cloud.githubusercontent.com/assets/12539356/24889578/a2aa64fa-1e1f-11e7-905e-8e56c593de2a.gif)
+
+
+#### Infinite Scroll
+
+
+![movieapplication4](https://cloud.githubusercontent.com/assets/12539356/24889592/c0799406-1e1f-11e7-8af2-4b8a44081185.gif)
+
+
+
