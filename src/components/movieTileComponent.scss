@@ -8,6 +8,7 @@
   text-align: center;
   display: flex;
   justify-content: space-around;
+  max-height: 402px;
 }
 
 .movieTitle {
@@ -15,12 +16,14 @@
     color: $aqua-dark;
     font-size: 36px;
     font-weight: 600;
+
 }
 
-.movieImage {
+.movieImage, .movieInfo {
   width: 270px;
   height: 402px;
   display: block;
+  transition: opacity 0.8s ease-in;
 }
 
 .movieShortDescription {
@@ -32,4 +35,42 @@
   margin: 0;
   padding: 0;
   border: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.movieInfo {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+}
+
+.movieInfoTitle {
+  color: $aqua-light;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.movieInfoPlot {
+  color: $aqua-light;
+  font-size: 14px;
+}
+
+.movieImage-visible {
+  opacity: 1;
+}
+
+.movieImage-hidden {
+  opacity: 0;
+}
+
+.movieInfo-visible {
+  opacity: 1;
+}
+
+.movieInfo-hidden {
+  opacity: 0;
 }

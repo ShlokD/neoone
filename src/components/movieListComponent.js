@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import map from 'lodash/map';
 import get from 'lodash/get';
 import noop from 'lodash/noop';
+import isEmpty from 'lodash/isEmpty';
 import Infinite from 'react-infinite';
 import MovieTile from './movieTileComponent';
 import './movieListComponent.scss';
@@ -28,6 +29,7 @@ class MoviesList extends Component {
     const { Title, Poster, imdbID } = movie;
     const { getMovieDetails, movieInfo } = this.props;
     const tileMovieInfo = get(movieInfo, `${imdbID}`, {});
+    const onTileClickFunc = isEmpty(tileMovieInfo) ? getMovieDetails : noop;
     return (
       <div key={key}>
         <MovieTile
@@ -35,7 +37,7 @@ class MoviesList extends Component {
           poster={Poster}
           id={imdbID}
           movieInfo={tileMovieInfo}
-          onTileClick={getMovieDetails}
+          onTileClick={onTileClickFunc}
         />
       </div>
     );

@@ -21,12 +21,32 @@ class MovieTile extends Component {
     });
     onTileClick(id);
   }
+
+  _renderMovieImage() {
+    const { title, poster } = this.props;
+    const { visibility } = this.state;
+    const visibilityClass = visibility === FRONT_FACE ? 'visible' : 'hidden';
+    return <img className={`movieImage movieImage-${visibilityClass}`} alt={`${title} poster`} src={poster} />;
+  }
+
+  _renderMovieInfo() {
+    const { movieInfo } = this.props;
+    const { visibility } = this.state;
+    const { Title, Plot } = movieInfo;
+    const visibilityClass = visibility === BACK_FACE ? 'visible' : 'hidden';
+    return (
+      <div className={`movieInfo movieInfo-${visibilityClass}`}>
+        <div className="movieInfoTitle">{Title}</div>
+        <div className="movieInfoPlot">{Plot}</div>
+      </div>
+    );
+  }
   render() {
-    const { title, poster, movieInfo } = this.props;
     return (
       <button className="movieTileButton" onClick={this._onTileClick}>
         <div className="movieTile">
-          <img className="movieImage" alt={`${title} poster`} src={poster} />
+          {this._renderMovieImage()}
+          {this._renderMovieInfo()}
         </div>
       </button>
     );
