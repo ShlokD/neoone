@@ -30,13 +30,13 @@ class MovieTile extends Component {
   }
 
   _renderMovieInfo() {
-    const { movieInfo } = this.props;
+    const { movieInfo, title } = this.props;
     const { visibility } = this.state;
-    const { Title, Plot } = movieInfo;
+    const { Plot } = movieInfo;
     const visibilityClass = visibility === BACK_FACE ? 'visible' : 'hidden';
     return (
       <div className={`movieInfo movieInfo-${visibilityClass}`}>
-        <div className="movieInfoTitle">{Title}</div>
+        <div className="movieInfoTitle">{title}</div>
         <div className="movieInfoPlot">{Plot}</div>
       </div>
     );
